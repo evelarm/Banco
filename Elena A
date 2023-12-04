@@ -1,0 +1,122 @@
+var aux: String = ""
+var opIngresada: String = aux
+var saldoTotal: Double = 0.0
+var firstTime: Bool = true
+
+func deposito(){ //funcion Deposito
+  print("\nIngrese el monto a depositar: ")
+  print("\n")
+  aux = readLine()! //Ingresa el monto a depositar por el usuraio
+  opIngresada = aux
+  let cantDepositada = Double (opIngresada)!//Convierte el monto a depositar de String a Double 
+  print ("\nDeposito realizado con exito por $ \(cantDepositada)") //Si la conversión fue exitosa
+  
+saldoTotal = saldoTotal + cantDepositada //Muestra el saldo total mas cantidad depositada
+  print ("\nSaldo Actual: $\(saldoTotal)")
+  print("\n")
+} 
+func retiro(){ //funcion retiro
+  if firstTime || saldoTotal == 0 { //Si es la primera vez que se ejecuta el programa
+    print("\nNo cuenta con saldo, favor de realizar un deposito ")
+    print("\n")
+    firstTime = false
+  } else {
+    print("\nIngrese el monto a retirar: ")
+    print("\n")
+    aux = readLine()! //Ingresa la cantidad a retirar por el usuario
+    opIngresada = aux
+    let cantRetirada = Double (opIngresada)!//Convierte la cantidad a retirar de String a Double
+    if cantRetirada <= saldoTotal { //Si la cantidad a retirar es menor o igual al saldo.
+    print ("\nRetiro realizado con exito por $ \(cantRetirada)")
+    saldoTotal = saldoTotal - cantRetirada //Muestra el saldo total menos la cantidad retirada
+    print ("\nSaldo Actual: $\(saldoTotal)")
+    print("\n")
+  }else {
+      print ("\n+ Saldo insuficiente +")
+      print("\n")
+  }
+  }
+}
+while (opIngresada != "4"){
+  print("\nBienvenido a BanCoppel")
+  print("\n")
+  print("1. Deposito")
+  print("2. Retiro")
+  print("3. Consulta de saldo")
+  print("4. Salir")
+  print("\n")
+  aux = readLine()! //Ingresa la opcion a realizar por el usuario
+  opIngresada = aux
+
+  switch opIngresada{
+    case "1":
+    deposito()
+    print("\n")
+    print("Desea realizar otro Deposito?(S/N):")
+    print("\n")
+    aux = readLine()!
+    opIngresada = aux
+    
+    switch opIngresada { //Switch para saber si se desea realizar otro deposito
+       case "S","SI","s","si","sI","Si":
+      deposito()
+    
+      case "N","NO","n","no","nO","No":
+      print("\n")
+      print("Desea realizar otra operación?(S/N):")
+      print("\n")
+      aux = readLine()!
+      opIngresada = aux
+    
+      if (opIngresada == "N" || opIngresada == "NO" || opIngresada == "n" || opIngresada == "no" || opIngresada == "nO" || opIngresada == "No"){
+        print("\n")
+        print("Gracias por utilizar nuestro servicio")
+        opIngresada = "4" 
+      }
+      default:
+      print("\n")
+      print("Opción inválida")
+    }
+    case "2":
+    retiro()
+    print("\n")
+    print("Desea realizar un deposito (S/N):")
+    print("\n")
+    aux = readLine()!
+    opIngresada = aux
+
+    switch opIngresada { //Switch para saber si se desea realizar otro deposito
+       case "S","SI","s","si","sI","Si":
+      deposito()
+
+      case "N","NO","n","no","nO","No":
+      print("\n")
+      print("Desea realizar otra transacción?(S/N)")
+      print("\n")
+      aux = readLine()!
+      opIngresada = aux
+
+      if (opIngresada == "N" || opIngresada == "NO" || opIngresada == "n" || opIngresada == "no" || opIngresada == "nO" || opIngresada == "No"){
+        print("\n")
+        print("Gracias por utilizar nuestro servicio")
+        opIngresada = "4" 
+      }
+      default:
+      print("\n")
+      print("Opción inválida")
+    }
+    
+    case "3":
+    print("Consulta de saldo")
+    print("\nSu saldo total es de $ \(saldoTotal)")
+
+    case "4":
+    print("* Gracias por utilizar nuestro servicio *")
+    
+    default:
+    print("Opcion invalida, intente de nuevo")
+    print("\n")
+
+  }
+}
+  
