@@ -108,6 +108,23 @@ while (opIngresada != "4"){
     case "3":
     print("Consulta de saldo")
     print("\nSu saldo total es de $ \(saldoTotal)")
+    print("\n")
+    print("Desea realizar otra operación?(S/N):")
+    print("\n")
+    aux = readLine()!
+    opIngresada = aux
+        switch opIngresada { //Switch para saber si se desea realizar otra operación
+        case "S","SI","s","si","sI","Si":
+          print("\n")
+        case "N","NO","n","no","nO","No":
+          print("\n")
+          print("Gracias por utilizar nuestro servicio")
+          opIngresada = "4" 
+        default:
+          print("\n")
+          print("Opción inválida")
+        }
+          
 
     case "4":
     print("* Gracias por utilizar nuestro servicio *")
