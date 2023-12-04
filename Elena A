@@ -1,8 +1,8 @@
 var aux: String = ""
 var opIngresada: String = aux
-var saldoTotal: Double = 0.0
+var saldoTotal: Double = 0
 var firstTime: Bool = true
-
+//Funciones de deposito y retiro para la ejeceucion del programa
 func deposito(){ //funcion Deposito
   print("\nIngrese el monto a depositar: ")
   print("\n")
@@ -10,15 +10,13 @@ func deposito(){ //funcion Deposito
   opIngresada = aux
   let cantDepositada = Double (opIngresada)!//Convierte el monto a depositar de String a Double 
   print ("\nDeposito realizado con exito por $ \(cantDepositada)") //Si la conversión fue exitosa
-  
-saldoTotal = saldoTotal + cantDepositada //Muestra el saldo total mas cantidad depositada
+  saldoTotal = saldoTotal + cantDepositada //Muestra el saldo total mas cantidad depositada
   print ("\nSaldo Actual: $\(saldoTotal)")
   print("\n")
 } 
 func retiro(){ //funcion retiro
   if firstTime || saldoTotal == 0 { //Si es la primera vez que se ejecuta el programa
     print("\nNo cuenta con saldo, favor de realizar un deposito ")
-    print("\n")
     firstTime = false
   } else {
     print("\nIngrese el monto a retirar: ")
@@ -32,10 +30,10 @@ func retiro(){ //funcion retiro
     print ("\nSaldo Actual: $\(saldoTotal)")
     print("\n")
   }else {
-      print ("\n+ Saldo insuficiente +")
+      print ("\n+++ Saldo Insuficiente +++")
       print("\n")
   }
-  }
+ }
 }
 while (opIngresada != "4"){
   print("\nBienvenido a BanCoppel")
@@ -79,19 +77,20 @@ while (opIngresada != "4"){
     }
     case "2":
     retiro()
+    if saldoTotal != 0 { //Si el saldo es diferente de 0
     print("\n")
-    print("Desea realizar un deposito (S/N):")
+    print("Desea realizar otro retiro? (S/N):")
     print("\n")
     aux = readLine()!
     opIngresada = aux
 
-    switch opIngresada { //Switch para saber si se desea realizar otro deposito
+    switch opIngresada { //Switch para saber si se desea realizar otro retiro
        case "S","SI","s","si","sI","Si":
-      deposito()
+      retiro()
 
       case "N","NO","n","no","nO","No":
       print("\n")
-      print("Desea realizar otra transacción?(S/N)")
+      print("Desea realizar otra operación?(S/N)")
       print("\n")
       aux = readLine()!
       opIngresada = aux
@@ -105,7 +104,7 @@ while (opIngresada != "4"){
       print("\n")
       print("Opción inválida")
     }
-    
+  }
     case "3":
     print("Consulta de saldo")
     print("\nSu saldo total es de $ \(saldoTotal)")
